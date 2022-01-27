@@ -1,22 +1,20 @@
-<ng-container *ngIf="geojson$ | async as geojson">
-  <geojson-svg-map
-    [visRegions]="geojson.features"
-    [visColorScaleDomain]="'area'"
-    [visColorScheme]="selectScheme"
-    [visView]="view"
-  ></geojson-svg-map>
-  <ul class="color-scheme-list">
-    <li
-      *ngFor="let scheme of schemes"
-      [class.active]="selectScheme === scheme"
-      (click)="handleSchemeClick(scheme)"
-    >
-      <color-scheme [ngScheme]="scheme"></color-scheme>
-    </li>
-  </ul>
-  <div class="view-toggle">
-    <a [class.active]="view === 'map'" (click)="setView('map')">MAP</a>
-    <span></span>
-    <a [class.active]="view === 'list'" (click)="setView('list')">LIST</a>
-  </div>
-</ng-container>
+<geojson-svg-map
+  [visRegions]="geojson.features"
+  [visColorScaleDomain]="'area'"
+  [visColorScheme]="selectScheme"
+  [visView]="view"
+></geojson-svg-map>
+<ul class="color-scheme-list">
+  <li
+    *ngFor="let scheme of schemes"
+    [class.active]="selectScheme === scheme"
+    (click)="handleSchemeClick(scheme)"
+  >
+    <color-scheme [ngScheme]="scheme"></color-scheme>
+  </li>
+</ul>
+<div class="view-toggle">
+  <a [class.active]="view === 'map'" (click)="setView('map')">MAP</a>
+  <span></span>
+  <a [class.active]="view === 'list'" (click)="setView('list')">LIST</a>
+</div>

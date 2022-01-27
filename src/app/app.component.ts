@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ExtendedFeatureCollection, map } from 'd3';
+import { ExtendedFeatureCollection } from 'd3';
 import { ColorScheme } from './components/geojson-svg-map/geojson-svg-map.model';
+
+import * as geojson from '../assets/sichuan.json';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,7 @@ import { ColorScheme } from './components/geojson-svg-map/geojson-svg-map.model'
 })
 export class AppComponent implements OnInit {
 
-  topojson$ = this.http.get('/assets/sichuan.topojson');
-  geojson$ = this.http.get<ExtendedFeatureCollection>('/assets/sichuan.geojson');
+  geojson = geojson as ExtendedFeatureCollection;
 
   schemes: ColorScheme[] = [
     'OrRd',
@@ -52,9 +53,7 @@ export class AppComponent implements OnInit {
   selectScheme: ColorScheme = 'Purples';
   view: 'map'|'list' = 'map';
 
-  constructor(
-    private readonly http: HttpClient
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
 
